@@ -1,6 +1,7 @@
 'use strict';
 
 let Mongoose = require('mongoose');
+let Assert = require('assert');
 
 const mongoDBUrl = "mongodb://localhost/myapp";
 
@@ -11,16 +12,17 @@ let options = {
   	promiseLibrary: require('bluebird')
 };
 
+Mongoose.promise = require('bluebird');
 
 Mongoose.connect(mongoDBUrl, options);
 let db = Mongoose.connection;
 
 function onError (err) {
 	console.log(err.toString());
+	throw err;
 };
 
 function onConnection() {
-	assert.equal(Band.collection.findOne().constructor, require('bluebird'));
 	console.log('connetion established successfully');
 }
 

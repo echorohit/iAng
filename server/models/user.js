@@ -1,28 +1,78 @@
 'use strict';
-var Path = require('path');
+let Path = require('path');
 
-var dbModulePath = Path.join(__dirname, '..', 'db');
+let dbModulePath = Path.join(__dirname, '..', 'db');
 let db = require(dbModulePath);
 let Mongoose = require('mongoose');
 
+Mongoose.promise = require('bluebird');
+
+let Faker = require('faker');
+
+let demoMode = false;
+
+let User = function User() {};
+
+
 let UserSchema = Mongoose.Schema({
 	name : String,
-	address: String,
-
-})
-
-let User = Mongoose.model('User', UserSchema);
-
-var m = new User({
-	name : 'Rohit',
-	address: "D116A, Laxminagar"
+	email: String,
+	phone: String,
+	city: String,
+	country: String
 });
 
-m.save(function(err, m) {
-	if(err) {
-		return console.log(err.toString());
+let UserModel = Mongoose.model('User', UserSchema);
+
+/**
+ * @param {[type]}
+ */
+User.prototype.addUser = function(user) {
+	
+	if(demoMode) {
+		user = {
+			"name" : Faker.name.findName(),
+			"email": Faker.internet.email(),
+			"phone": Faker.phone.phoneNumber(),
+			"city" : Faker.address.city(),
+			"country": Faker.address.countryCode()
+		};	
 	}
-	console.log(m);
-})
+	var newUser = new UserModel(user);
+
+	console.log(newUser);
 
 
+	return newUser.save()
+		   .then( (user) => {
+		   		return user;
+		   })
+		   .error( (err) => {
+		   		console.log(err.toString());
+		   })
+		   .catch( (err) => {
+		   		throw(err);
+		   });
+}
+
+/**
+ * @param  {[type]}
+ * @return {[type]}
+ */
+User.prototype.deleteUser = function(id) {
+	//noop
+	//Will do it later
+}
+
+User.prototype.editUser = function(id) {
+	//noop
+	//Will do it later
+}
+
+User.prototype.setDemo = function(demoBool) {
+	demoMode = !!demoBool;
+}
+
+
+
+exports = module.exports =  User;
