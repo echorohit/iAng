@@ -1,0 +1,1 @@
+angular.module('EAG', ['ui.bootstrap', 'ui.router', 'ngCookies']);

@@ -1,0 +1,42 @@
+{
+  "name": "iang",
+  "version": "1.0.0",
+  "description": "Play ground using angular and gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "gulp",
+    "angular",
+    "express"
+  ],
+  "author": "echorohit",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.1",
+    "express": "^4.14.0",
+    "gulp-jshint": "^2.0.1",
+    "mongoose": "^4.5.9"
+  },
+  "devDependencies": {
+    "del": "^2.2.2",
+    "faker": "^3.1.0",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^5.0.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-less": "^3.1.0",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-usemin": "^0.3.23",
+    "gulp-watch": "^4.3.9",
+    "gulp-wrap": "^0.13.0",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.1"
+  }
+}
