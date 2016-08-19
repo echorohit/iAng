@@ -1,17 +1,16 @@
 'use strict';
 let Path = require('path');
-
 let dbModulePath = Path.join(__dirname, '..', 'db');
 let db = require(dbModulePath);
 let Mongoose = require('mongoose');
-
-Mongoose.promise = require('bluebird');
-
 let Faker = require('faker');
 
 let demoMode = false;
 
-let User = function User() {};
+const internals  = {};
+
+
+exports = module.exports = internals.User = function User() {};
 
 
 let UserSchema = Mongoose.Schema({
@@ -27,7 +26,8 @@ let UserModel = Mongoose.model('User', UserSchema);
 /**
  * @param {[type]}
  */
-User.prototype.addUser = function(user) {
+
+internals.User.prototype.addUser = function(user) {
 	
 	if(demoMode) {
 		user = {
@@ -39,8 +39,6 @@ User.prototype.addUser = function(user) {
 		};	
 	}
 	var newUser = new UserModel(user);
-
-	console.log(newUser);
 
 
 	return newUser.save()
@@ -54,25 +52,32 @@ User.prototype.addUser = function(user) {
 		   		throw(err);
 		   });
 }
-
 /**
  * @param  {[type]}
  * @return {[type]}
  */
-User.prototype.deleteUser = function(id) {
+internals.User.prototype.deleteUser = function(id) {
 	//noop
 	//Will do it later
 }
 
-User.prototype.editUser = function(id) {
+/**
+ * [editUser description]
+ * @param  {[type]} id [description]
+ * @return {[type]}    [description]
+ */
+internals.User.prototype.editUser = function(id) {
 	//noop
 	//Will do it later
 }
 
-User.prototype.setDemo = function(demoBool) {
+/**
+ * [setDemo description]
+ * @param {[type]} demoBool [description]
+ */
+internals.User.prototype.setDemo = function(demoBool) {
 	demoMode = !!demoBool;
 }
 
 
 
-exports = module.exports =  User;

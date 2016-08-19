@@ -3,6 +3,7 @@
 let Mongoose = require('mongoose');
 let Assert = require('assert');
 
+
 const mongoDBUrl = "mongodb://localhost/myapp";
 
 let options = {
@@ -12,7 +13,7 @@ let options = {
   	promiseLibrary: require('bluebird')
 };
 
-Mongoose.promise = require('bluebird');
+Mongoose.Promise = require('bluebird');
 
 Mongoose.connect(mongoDBUrl, options);
 let db = Mongoose.connection;
