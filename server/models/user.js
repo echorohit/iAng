@@ -4,6 +4,7 @@ let dbModulePath = Path.join(__dirname, '..', 'db');
 let db = require(dbModulePath);
 let Mongoose = require('mongoose');
 let Faker = require('faker');
+let autoIncrement = require('mongoose-auto-increment');
 
 let demoMode = false;
 
@@ -12,6 +13,8 @@ const internals  = {};
 
 exports = module.exports = internals.User = function User() {};
 
+//Adding Auto increment field
+autoIncrement.initialize(db);
 
 let UserSchema = Mongoose.Schema({
 	name : String,
@@ -21,6 +24,14 @@ let UserSchema = Mongoose.Schema({
 	country: String
 });
 
+
+UserSchema.plugin(autoIncrement.plugin, {
+	model : 'User',
+	field : 'userId',
+	startAt: 1,
+	incrementBy : 1
+});
+	
 let UserModel = Mongoose.model('User', UserSchema);
 
 /**

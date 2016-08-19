@@ -17,7 +17,8 @@
     "bluebird": "^3.4.1",
     "express": "^4.14.0",
     "gulp-jshint": "^2.0.1",
-    "mongoose": "^4.5.9"
+    "mongoose": "^4.5.9",
+    "mongoose-auto-increment": "^5.0.1"
   },
   "devDependencies": {
     "del": "^2.2.2",

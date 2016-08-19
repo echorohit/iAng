@@ -16,6 +16,7 @@ let options = {
 Mongoose.Promise = require('bluebird');
 
 Mongoose.connect(mongoDBUrl, options);
+
 let db = Mongoose.connection;
 
 function onError (err) {
